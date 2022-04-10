@@ -3,18 +3,21 @@
 ## Install
 
 1. Open a terminal
-2. Go to the project folder: `cd /var/www/webshippy`
-3. Copy the .env.example to the .env file: `cp .env.example .env`
-4. Go to the .docker folder: `cd .docker`
-5. Start docker: `docker-compose up --build -d` 
-6. Go inside the docker: `docker exec -ti webshippy_app bash`
-7. Run composer: `composer install`
-8. Generate a key: `php artisan key:generate` 
+2. Clone the repository: `git clone git@github.com:jakabj16/webshippy.git`
+3. Go to the project folder: `cd webshippy`
+4. Copy the .env.example to the .env file: `cp .env.example .env`
+5. Go to the .docker folder: `cd .docker`
+6. Start docker: `docker-compose up --build -d` 
+7. Go inside the docker: `docker exec -ti webshippy_app bash`
+8. Run composer: `composer install`
+9. Generate a key: `php artisan key:generate` 
 
 ## Usage
 
 1. Open a terminal
-2. Run the command: `docker exec -ti webshippy_app php artisan webshippy:get-fulfillable-orders`
+2. Run the command: `docker exec -ti webshippy_app php artisan webshippy:get-fulfillable-orders '{"1":1,"2":2,"3":3}'`
+
+The orders.csv is inside the project folder in storage/app 
 
 ## Examples
 
@@ -28,3 +31,8 @@ product_id          quantity            priority            created_at
 2                   2                   low                 2021-03-24 11:02:06 
 1                   1                   low                 2021-03-25 19:08:22 
 ```
+
+## Run test
+
+1. Open a terminal
+2. Run the command: `docker exec -ti webshippy_app php artisan test --coverage`

@@ -17,8 +17,14 @@ class ReadOrdersFromCsv
      * @param string $csvPath
      * @return Collection
      */
-    public function handle(string $csvPath = 'orders.csv'): Collection
+    public function handle(string $csvPath): Collection
     {
+        if (empty($csvPath)) {
+            throw new \RuntimeException('The order csv file path is not set!');
+        } elseif (!file_exists(Storage::path($csvPath))) {
+            throw new \RuntimeException('The order csv file does not exist!');
+        }
+
         $orders = new Collection();
         $headers = [];
         $row = 1;
